@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>蘇子涵｜Zihan Su</title>
+  <meta name="description" content="蘇子涵｜資訊管理系大一學生的一頁式個人網站。用數位工具整理資訊，也把閱讀、料理與日常美感，慢慢寫成自己的風格。" />
+  <meta name="theme-color" content="#f5efe7" />
+  <meta property="og:title" content="蘇子涵｜Zihan Su" />
+  <meta property="og:description" content="資訊管理系大一學生的一頁式個人網站。理性整理資訊，也溫柔地記錄日常。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="og-cover.jpg" />
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <defs>
+      <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+        <stop stop-color="%23e8d6c5"/>
+        <stop offset="1" stop-color="%23d5ddcf"/>
+      </linearGradient>
+    </defs>
+    <rect width="128" height="128" rx="30" fill="url(%23g)"/>
+    <text x="64" y="78" text-anchor="middle" font-size="56" font-family="Georgia, serif" fill="%23584235">子</text>
+  </svg>' />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f5efe7;
+      --bg-deep:#efe7de;
+      --paper:rgba(255,255,255,.76);
+      --paper-strong:rgba(255,255,255,.88);
+      --ink:#2f2925;
+      --muted:#6d655f;
+      --line:rgba(98,80,64,.14);
+      --line-strong:rgba(98,80,64,.22);
+      --warm:#b88e69;
+      --warm-deep:#875f41;
+      --sage:#7d8b79;
+      --soft:#d9d1c8;
+      --shadow:0 22px 60px rgba(70,48,27,.08);
+      --shadow-soft:0 12px 28px rgba(70,48,27,.06);
+      --radius-xl:34px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --maxw:1180px;
+      --dock:76px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(184,142,105,.14), transparent 22%),
+        radial-gradient(circle at 100% 18%, rgba(125,139,121,.14), transparent 20%),
+        linear-gradient(180deg, #f8f3ed 0%, #f2ebe3 100%);
+      font-family:"Inter","Noto Sans TC",sans-serif;
+      line-height:1.82;
+      letter-spacing:.01em;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.46) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.46) 1px, transparent 1px);
+      background-size:28px 28px;
+      opacity:.22;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.42), rgba(0,0,0,.04));
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .container{width:min(calc(100% - 32px), var(--maxw)); margin:0 auto}
+    .progress{
+      position:fixed; top:0; left:0; z-index:80; height:3px; width:var(--progress,0%);
+      background:linear-gradient(90deg,var(--warm),var(--sage)); box-shadow:0 0 18px rgba(184,142,105,.4)
+    }
+    .site-header{
+      position:sticky; top:0; z-index:70; backdrop-filter:blur(16px);
+      background:rgba(245,239,231,.78); border-bottom:1px solid rgba(98,80,64,.08);
+    }
+    .header-inner{display:flex; align-items:center; justify-content:space-between; gap:18px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; min-width:0}
+    .brand-mark{
+      width:46px; height:46px; border-radius:15px; display:grid; place-items:center;
+      background:linear-gradient(135deg, rgba(184,142,105,.24), rgba(125,139,121,.22));
+      border:1px solid rgba(98,80,64,.12); box-shadow:var(--shadow-soft);
+      font-family:"Noto Serif TC",serif; font-size:1.1rem; font-weight:700;
+    }
+    .brand-name{font-size:.98rem; font-weight:700}
+    .brand-sub{color:var(--muted); font-size:.82rem}
+    .nav{display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .nav a{
+      padding:10px 14px; border-radius:999px; color:var(--muted); font-size:.94rem;
+      transition:.2s ease; border:1px solid transparent;
+    }
+    .nav a:hover,.nav a.active{
+      color:var(--ink); background:rgba(255,255,255,.74); border-color:rgba(98,80,64,.10); box-shadow:var(--shadow-soft)
+    }
+
+    .hero{padding:52px 0 28px}
+    .hero-shell{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr); gap:24px; align-items:stretch}
+    .glass{
+      background:var(--paper); border:1px solid rgba(98,80,64,.12); box-shadow:var(--shadow); backdrop-filter:blur(8px)
+    }
+    .hero-card{padding:36px; border-radius:var(--radius-xl); position:relative; overflow:hidden}
+    .hero-card::after{
+      content:""; position:absolute; right:-50px; bottom:-72px; width:220px; height:220px; border-radius:50%;
+      background:radial-gradient(circle, rgba(184,142,105,.18), transparent 70%); pointer-events:none
+    }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+      background:rgba(255,255,255,.74); color:var(--muted); border:1px solid rgba(98,80,64,.10);
+      font-size:.82rem; letter-spacing:.05em;
+    }
+    .dot{width:8px; height:8px; border-radius:50%; background:linear-gradient(135deg,var(--warm),var(--sage))}
+    h1,h2,h3,h4,p{margin:0}
+    h1{
+      margin-top:18px; font-family:"Noto Serif TC",serif; font-size:clamp(2.5rem,6vw,4.8rem);
+      line-height:1.14; letter-spacing:.02em
+    }
+    .hero-subtitle{margin-top:20px; font-size:1.08rem; color:#4d443d; max-width:34em}
+    .hero-note{margin-top:14px; color:var(--muted); max-width:39em}
+    .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px}
+    .button,.ghost-button,.copy-button,.mini-button{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:52px; padding:0 20px;
+      border-radius:999px; border:1px solid transparent; font-weight:600; cursor:pointer; transition:.22s ease; font-size:.97rem
+    }
+    .button{color:#fff; background:linear-gradient(135deg,var(--warm-deep),var(--warm)); box-shadow:0 16px 30px rgba(127,92,63,.20)}
+    .button:hover{transform:translateY(-1px)}
+    .ghost-button,.copy-button,.mini-button{
+      background:rgba(255,255,255,.68); color:var(--ink); border-color:rgba(98,80,64,.12)
+    }
+    .ghost-button:hover,.copy-button:hover,.mini-button:hover{background:rgba(255,255,255,.94)}
+    .hero-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:28px}
+    .chip{
+      padding:9px 14px; border-radius:999px; font-size:.88rem; color:var(--muted);
+      background:rgba(255,255,255,.68); border:1px solid rgba(98,80,64,.10)
+    }
+    .stat-row{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:12px; margin-top:24px}
+    .stat{
+      padding:18px; border-radius:20px; background:rgba(255,255,255,.70); border:1px solid rgba(98,80,64,.10)
+    }
+    .stat strong{display:block; font-size:1.15rem}
+    .stat span{display:block; margin-top:4px; color:var(--muted); font-size:.88rem}
+
+    .photo-card{
+      border-radius:var(--radius-xl); padding:16px; position:relative; overflow:hidden
+    }
+    .photo-card::before{
+      content:""; position:absolute; inset:16px 16px auto auto; width:150px; height:150px; border-radius:50%;
+      background:radial-gradient(circle, rgba(125,139,121,.22), transparent 66%); pointer-events:none
+    }
+    .photo-frame{
+      position:relative; border-radius:26px; overflow:hidden; aspect-ratio:4 / 5;
+      border:1px solid rgba(98,80,64,.10);
+      background:linear-gradient(180deg, rgba(184,142,105,.12), rgba(125,139,121,.14))
+    }
+    .photo-frame img{width:100%; height:100%; object-fit:cover; object-position:center 18%}
+    .photo-panel{
+      position:absolute; inset:auto 16px 16px 16px; padding:18px;
+      border-radius:20px; background:linear-gradient(180deg, rgba(47,41,37,0.08), rgba(47,41,37,.78));
+      color:#fff; backdrop-filter:blur(12px)
+    }
+    .photo-panel .title{font-size:1.06rem; font-weight:700}
+    .photo-panel .sub{margin-top:6px; color:rgba(255,255,255,.86); font-size:.92rem}
+    .panel-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .panel-tags span{
+      padding:7px 10px; border-radius:999px; font-size:.8rem;
+      background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18)
+    }
+    .floating-note{
+      position:absolute; top:24px; left:24px; padding:12px 14px; border-radius:18px;
+      background:rgba(255,255,255,.82); border:1px solid rgba(98,80,64,.10); box-shadow:var(--shadow-soft); max-width:180px
+    }
+    .floating-note small{display:block; color:var(--sage); font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.72rem}
+    .floating-note p{margin-top:4px; font-size:.86rem; color:#4f4640; line-height:1.55}
+
+    section{padding:36px 0}
+    .section-head{max-width:780px; margin-bottom:22px}
+    .section-kicker{
+      color:var(--sage); font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase
+    }
+    .section-head h2{margin-top:8px; font-family:"Noto Serif TC",serif; font-size:clamp(1.8rem,3vw,2.5rem)}
+    .section-head p{margin-top:10px; color:var(--muted)}
+
+    .story-grid,.skills-grid,.interests-grid,.process-grid,.portfolio-grid,.snapshot-grid,.contact-grid,.footer-grid{
+      display:grid; gap:18px
+    }
+    .story-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .skills-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .interests-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .process-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .portfolio-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .snapshot-grid{grid-template-columns:2fr 1.1fr}
+    .contact-grid{grid-template-columns:1.2fr .8fr}
+    .card{padding:24px; border-radius:var(--radius-lg)}
+    .card h3{font-size:1.08rem}
+    .card p{margin-top:10px; color:var(--muted)}
+    .mini-kicker{
+      display:inline-flex; padding:7px 10px; border-radius:999px; font-size:.76rem;
+      background:rgba(255,255,255,.72); border:1px solid rgba(98,80,64,.10); color:var(--sage); font-weight:700; letter-spacing:.06em; text-transform:uppercase
+    }
+    .story-list{margin-top:12px; padding-left:1rem; color:var(--muted)}
+    .story-list li+li{margin-top:8px}
+    .story-value{margin-top:18px; padding-top:18px; border-top:1px solid rgba(98,80,64,.10); color:#514842; font-size:.92rem}
+
+    .skill-top{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .skill-index{
+      width:42px; height:42px; border-radius:14px; display:grid; place-items:center;
+      background:linear-gradient(135deg, rgba(184,142,105,.22), rgba(125,139,121,.22));
+      border:1px solid rgba(98,80,64,.10); font-weight:700
+    }
+
+    .interest-card{position:relative; overflow:hidden}
+    .interest-card::after{
+      content:""; position:absolute; right:-40px; bottom:-40px; width:120px; height:120px; border-radius:50%;
+      background:radial-gradient(circle, rgba(184,142,105,.14), transparent 68%); pointer-events:none
+    }
+
+    .process-step{
+      position:relative; padding-top:18px
+    }
+    .process-step::before{
+      content:""; position:absolute; top:0; left:0; width:48px; height:4px; border-radius:999px; background:linear-gradient(90deg,var(--warm),var(--sage))
+    }
+    .step-no{color:var(--sage); font-weight:700; font-size:.86rem; letter-spacing:.06em}
+    .step-text{margin-top:10px; color:var(--muted)}
+
+    .work-thumb{
+      border-radius:20px; height:190px; border:1px solid rgba(98,80,64,.10); overflow:hidden; position:relative
+    }
+    .thumb-a{background:linear-gradient(135deg, rgba(184,142,105,.16), rgba(255,255,255,.92))}
+    .thumb-b{background:linear-gradient(135deg, rgba(125,139,121,.18), rgba(255,255,255,.92))}
+    .thumb-c{background:linear-gradient(135deg, rgba(184,142,105,.12), rgba(125,139,121,.16), rgba(255,255,255,.92))}
+    .thumb-grid{
+      position:absolute; inset:0; opacity:.34;
+      background-image:
+        linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+      background-size:22px 22px
+    }
+    .thumb-card{
+      position:absolute; left:18px; right:18px; bottom:18px; padding:14px 16px;
+      border-radius:18px; background:rgba(255,255,255,.82); border:1px solid rgba(98,80,64,.10); backdrop-filter:blur(8px)
+    }
+    .thumb-card strong{display:block; font-size:.96rem}
+    .thumb-card span{display:block; margin-top:4px; color:var(--muted); font-size:.82rem}
+    .work-meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+    .pill{
+      padding:7px 10px; border-radius:999px; font-size:.78rem;
+      background:rgba(255,255,255,.70); border:1px solid rgba(98,80,64,.10); color:var(--muted)
+    }
+    .work-body{margin-top:14px}
+    .work-body h3{font-size:1.08rem}
+    .work-body p{margin-top:8px; color:var(--muted)}
+    .work-link{display:inline-flex; margin-top:16px; color:var(--warm-deep); font-weight:700}
+
+    .snapshot-wrap{padding:28px; border-radius:var(--radius-xl)}
+    .snapshot-wrap p{margin-top:10px; color:var(--muted)}
+    .checklist{display:grid; gap:12px; margin-top:18px}
+    .check{
+      display:flex; gap:12px; align-items:flex-start; padding:14px 16px; border-radius:18px;
+      background:rgba(255,255,255,.72); border:1px solid rgba(98,80,64,.10)
+    }
+    .check-mark{
+      flex:0 0 auto; width:28px; height:28px; border-radius:50%;
+      display:grid; place-items:center; background:linear-gradient(135deg, rgba(184,142,105,.18), rgba(125,139,121,.22));
+      font-weight:800
+    }
+    .quote-card{
+      display:flex; flex-direction:column; justify-content:space-between; padding:28px; border-radius:var(--radius-xl);
+      position:relative; overflow:hidden
+    }
+    .quote-card::after{
+      content:"“"; position:absolute; right:20px; bottom:-34px; font-size:9rem; color:rgba(184,142,105,.10); line-height:1; font-family:"Noto Serif TC",serif
+    }
+    .quote{font-family:"Noto Serif TC",serif; font-size:1.18rem; line-height:1.7}
+    .quote-sub{margin-top:12px; color:var(--muted)}
+
+    .contact-main,.contact-side{padding:28px; border-radius:var(--radius-xl)}
+    .contact-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:22px}
+    .contact-list{display:grid; gap:12px; margin-top:22px}
+    .contact-item{
+      display:flex; gap:14px; align-items:flex-start; padding:15px 16px; border-radius:18px;
+      background:rgba(255,255,255,.72); border:1px solid rgba(98,80,64,.10)
+    }
+    .icon-badge{
+      width:38px; height:38px; border-radius:14px; display:grid; place-items:center; font-weight:700;
+      background:linear-gradient(135deg, rgba(184,142,105,.18), rgba(125,139,121,.18)); border:1px solid rgba(98,80,64,.10)
+    }
+    .contact-item strong{display:block; font-size:.92rem}
+    .contact-item span{display:block; color:var(--muted); font-size:.9rem; margin-top:2px}
+    .qr-card{
+      display:grid; place-items:center; padding:20px; border-radius:22px; background:rgba(255,255,255,.72); border:1px solid rgba(98,80,64,.10)
+    }
+    .qr-card img{width:min(100%, 240px); border-radius:18px}
+    .photo-credit{margin-top:12px; color:var(--muted); font-size:.84rem}
+
+    .footer{padding:16px 0 calc(var(--dock) + 22px)}
+    .footer-shell{
+      padding:22px 24px; border-radius:24px; display:flex; align-items:center; justify-content:space-between; gap:14px
+    }
+    .footer-shell p{color:var(--muted); font-size:.92rem}
+
+    .dock{
+      position:fixed; left:50%; bottom:16px; transform:translateX(-50%);
+      width:min(calc(100% - 24px), 680px); z-index:75; display:none;
+      padding:10px; border-radius:999px; background:rgba(255,255,255,.84); border:1px solid rgba(98,80,64,.10);
+      box-shadow:0 14px 34px rgba(70,48,27,.12); backdrop-filter:blur(14px)
+    }
+    .dock nav{display:grid; grid-template-columns:repeat(5,1fr); gap:8px}
+    .dock a{
+      padding:10px 6px; border-radius:999px; text-align:center; font-size:.82rem; color:var(--muted); transition:.2s ease
+    }
+    .dock a.active,.dock a:hover{background:rgba(248,243,237,.96); color:var(--ink)}
+
+    .toast{
+      position:fixed; left:50%; bottom:calc(var(--dock) + 20px); transform:translateX(-50%) translateY(20px);
+      padding:12px 16px; border-radius:999px; background:rgba(47,41,37,.94); color:#fff; font-size:.9rem;
+      opacity:0; pointer-events:none; transition:.25s ease; z-index:85
+    }
+    .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+
+    @media (max-width:1080px){
+      .skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .process-grid,.portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .story-grid,.interests-grid,.snapshot-grid,.contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:820px){
+      .nav{display:none}
+      .hero-shell{grid-template-columns:1fr}
+      .stat-row{grid-template-columns:1fr}
+      .dock{display:block}
+      .footer{padding-bottom:calc(var(--dock) + 36px)}
+    }
+    @media (max-width:640px){
+      .hero{padding-top:34px}
+      .hero-card,.photo-card,.card,.snapshot-wrap,.quote-card,.contact-main,.contact-side{padding:22px}
+      .skills-grid,.process-grid,.portfolio-grid{grid-template-columns:1fr}
+      h1{font-size:2.5rem}
+      .photo-card{padding:12px}
+      .floating-note{position:static; margin:0 0 12px 0; max-width:none}
+      .contact-actions,.hero-actions{flex-direction:column; align-items:stretch}
+      .button,.ghost-button,.copy-button{width:100%}
+      .footer-shell{flex-direction:column; align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="回到首頁">
+        <div class="brand-mark">子</div>
+        <div>
+          <div class="brand-name">蘇子涵｜Zihan Su</div>
+          <div class="brand-sub">資訊管理系・大一・一頁式個人網站</div>
+        </div>
+      </a>
+      <nav class="nav" aria-label="主導覽">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#process">Process</a>
+        <a href="#works">Works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-shell">
+        <div class="hero-card glass">
+          <div class="eyebrow"><span class="dot"></span> Personal website / portfolio page</div>
+          <h1>蘇子涵<br>把資訊整理，也把生活感留下來。</h1>
+          <p class="hero-subtitle">我是資訊管理系大一學生，喜歡用數位工具把想法整理清楚，也喜歡在烘焙、煮飯與閱讀裡，慢慢長出自己的節奏與風格。</p>
+          <p class="hero-note">這個網站不是只放資料，而是把「我是誰、我正在學什麼、我想成為怎樣的人」用更清楚的方式呈現出來。</p>
+
+          <div class="hero-actions">
+            <a class="button" href="#works">查看作品區</a>
+            <a class="ghost-button" href="#contact">聯絡方式</a>
+          </div>
+
+          <div class="hero-chips">
+            <span class="chip">資訊管理系</span>
+            <span class="chip">大一學生</span>
+            <span class="chip">文青・乾淨・溫柔</span>
+            <span class="chip">AI 協作</span>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat">
+              <strong>01</strong>
+              <span>以單頁方式整合個人介紹、作品與聯絡資訊</span>
+            </div>
+            <div class="stat">
+              <strong>02</strong>
+              <span>將 AI 協作流程轉成可閱讀、可展示的成果頁</span>
+            </div>
+            <div class="stat">
+              <strong>03</strong>
+              <span>保留學生感與真實感，不做過度商業化包裝</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="photo-card glass" aria-label="個人照片與定位">
+          <div class="floating-note">
+            <small>Website note</small>
+            <p>這一版已加入本人照片，讓網站從文案頁升級成更完整的個人展示頁。</p>
+          </div>
+          <div class="photo-frame">
+            <img src="profile-focus.jpg" alt="蘇子涵的個人照片" />
+            <div class="photo-panel">
+              <div class="title">Zihan Su</div>
+              <div class="sub">資訊管理系大一｜用理性整理資訊，也用生活靈感豐富自己。</div>
+              <div class="panel-tags">
+                <span>AI 協作</span>
+                <span>內容整理</span>
+                <span>日常美感</span>
+              </div>
+            </div>
+          </div>
+          <p class="photo-credit">照片由本人提供，已針對網站展示版面做裁切與視覺整合。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">About</div>
+          <h2>不是只做一個網站，而是把自己的輪廓整理出來。</h2>
+          <p>這一頁想呈現的，不只是基本資料，而是我目前正在建立的學習樣子：有邏輯、有生活感，也願意慢慢累積自己的表達方式。</p>
+        </div>
+
+        <div class="story-grid">
+          <article class="card glass">
+            <span class="mini-kicker">Who I am</span>
+            <h3>我是誰</h3>
+            <p>我是蘇子涵，目前就讀資訊管理系一年級。對我來說，資訊管理不只是學習工具與技術，也是一種把資訊、內容與表達整合起來的能力。</p>
+            <ul class="story-list">
+              <li>喜歡把零散資訊整理成有結構的內容</li>
+              <li>重視閱讀體驗與畫面節奏</li>
+              <li>希望作品能同時有邏輯與溫度</li>
+            </ul>
+            <div class="story-value">關鍵特質：清楚、穩定、願意持續學習。</div>
+          </article>
+
+          <article class="card glass">
+            <span class="mini-kicker">How I learn</span>
+            <h3>我怎麼學習</h3>
+            <p>我會先釐清主題重點，再用 AI 工具協助整理架構、優化文字與推進實作。AI 對我來說不是替代，而是幫我更有效率地把想法落地。</p>
+            <ul class="story-list">
+              <li>先理解目的，再開始做內容</li>
+              <li>把大方向拆成可操作的小步驟</li>
+              <li>完成後再回頭修正語氣與細節</li>
+            </ul>
+            <div class="story-value">學習方式：先構思、再生成、最後調整與驗證。</div>
+          </article>
+
+          <article class="card glass">
+            <span class="mini-kicker">What I value</span>
+            <h3>我想成為怎樣的人</h3>
+            <p>我希望自己的風格，不只是會用工具，而是能把生活感、文字感與個人思考放進作品裡，讓每一份內容都看得出真實與用心。</p>
+            <ul class="story-list">
+              <li>不追求只會炫技的表面完整</li>
+              <li>更重視表達是否清楚、是否有辨識度</li>
+              <li>希望作品能留下自己的氣質</li>
+            </ul>
+            <div class="story-value">目標方向：建立更清楚的個人品牌與數位足跡。</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Skills</div>
+          <h2>目前最穩定的能力，不一定最華麗，但能真正用得上。</h2>
+          <p>這些能力是我現在最明確、也最能持續累積的部分。</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="card glass">
+            <div class="skill-top">
+              <h3>資訊整理</h3>
+              <div class="skill-index">01</div>
+            </div>
+            <p>能把零散內容重新分類、整合與精簡，讓資訊更有條理，也更容易閱讀與理解。</p>
+          </article>
+
+          <article class="card glass">
+            <div class="skill-top">
+              <h3>AI 協作應用</h3>
+              <div class="skill-index">02</div>
+            </div>
+            <p>能運用 AI 協助構思網站架構、整理文案、優化表達與推進網站內容完成度。</p>
+          </article>
+
+          <article class="card glass">
+            <div class="skill-top">
+              <h3>基礎數位內容設計</h3>
+              <div class="skill-index">03</div>
+            </div>
+            <p>能進行簡單的版面整理、視覺層次安排與文字編排，讓內容呈現更完整。</p>
+          </article>
+
+          <article class="card glass">
+            <div class="skill-top">
+              <h3>持續學習能力</h3>
+              <div class="skill-index">04</div>
+            </div>
+            <p>面對新工具與新知識時，願意嘗試、修正、重新整理，逐步把能力累積成作品。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Interests</div>
+          <h2>生活裡喜歡的事，也正在慢慢變成我的風格來源。</h2>
+          <p>這些興趣看起來很日常，但它們其實也影響了我整理內容、感受文字與安排節奏的方式。</p>
+        </div>
+
+        <div class="interests-grid">
+          <article class="card glass interest-card">
+            <span class="mini-kicker">Baking</span>
+            <h3>烘焙</h3>
+            <p>我喜歡烘焙裡的比例、節奏與細節。從材料到成品的過程，讓我更能感受到耐心與完成感。</p>
+          </article>
+
+          <article class="card glass interest-card">
+            <span class="mini-kicker">Cooking</span>
+            <h3>料理</h3>
+            <p>煮飯對我來說不只是日常，也是把心意與生活感表達出來的一種方式，讓作品之外的自己更完整。</p>
+          </article>
+
+          <article class="card glass interest-card">
+            <span class="mini-kicker">Reading</span>
+            <h3>閱讀小說</h3>
+            <p>閱讀讓我接觸不同觀點與故事，也讓我更在意文字的情緒、節奏與畫面感。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Process</div>
+          <h2>這個網站的完成方式，是把作業要求、AI 協作與個人內容整合起來。</h2>
+          <p>我不是直接貼資料，而是先理解老師希望我們學到什麼，再讓網站真正能代表自己。</p>
+        </div>
+
+        <div class="process-grid">
+          <article class="card glass process-step">
+            <div class="step-no">STEP 01</div>
+            <h3>理解作業目的</h3>
+            <p class="step-text">先釐清這份作業真正想做的，不只是網站外觀，而是建立數位履歷與個人品牌。</p>
+          </article>
+
+          <article class="card glass process-step">
+            <div class="step-no">STEP 02</div>
+            <h3>整理網站內容</h3>
+            <p class="step-text">把個人資料、技能、興趣、作品與聯絡資訊拆成清楚區塊，避免內容堆疊。</p>
+          </article>
+
+          <article class="card glass process-step">
+            <div class="step-no">STEP 03</div>
+            <h3>用 AI 協作優化</h3>
+            <p class="step-text">透過 AI 協助整理文案、調整語氣、優化版面與細節，讓網站更完整。</p>
+          </article>
+
+          <article class="card glass process-step">
+            <div class="step-no">STEP 04</div>
+            <h3>加入照片與完成展示</h3>
+            <p class="step-text">最後把本人照片與互動細節整合進網站，讓它從文案頁升級成真正的展示頁。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="works">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Works</div>
+          <h2>目前可展示的作品，以 AI 協作、資訊整理與內容表達為核心。</h2>
+          <p>這裡先整理成適合展示的作品區塊，之後也能繼續補上真實課堂成果與其他內容。</p>
+        </div>
+
+        <div class="portfolio-grid">
+          <article class="card glass">
+            <div class="work-thumb thumb-a">
+              <div class="thumb-grid"></div>
+              <div class="thumb-card">
+                <strong>AI 協作個人網站規畫</strong>
+                <span>Website concept / structure / copy</span>
+              </div>
+            </div>
+            <div class="work-meta">
+              <span class="pill">AI 協作</span>
+              <span class="pill">網站規畫</span>
+              <span class="pill">文案整理</span>
+            </div>
+            <div class="work-body">
+              <h3>AI 協作個人網站規畫</h3>
+              <p>透過 AI 工具協助整理個人資訊、網站結構與風格方向，完成一頁式個人網站的規畫與文案整合。</p>
+              <a class="work-link" href="#process">查看製作流程 →</a>
+            </div>
+          </article>
+
+          <article class="card glass">
+            <div class="work-thumb thumb-b">
+              <div class="thumb-grid"></div>
+              <div class="thumb-card">
+                <strong>資訊整理與內容排版</strong>
+                <span>Information structuring / readability</span>
+              </div>
+            </div>
+            <div class="work-meta">
+              <span class="pill">資訊整理</span>
+              <span class="pill">可讀性</span>
+              <span class="pill">版面表達</span>
+            </div>
+            <div class="work-body">
+              <h3>資訊整理與內容排版練習</h3>
+              <p>將原本較零散的文字重新分類、合併與簡化，讓閱讀動線更清楚，也更符合展示用途。</p>
+              <a class="work-link" href="#skills">對應能力 →</a>
+            </div>
+          </article>
+
+          <article class="card glass">
+            <div class="work-thumb thumb-c">
+              <div class="thumb-grid"></div>
+              <div class="thumb-card">
+                <strong>生活主題內容企劃</strong>
+                <span>Daily aesthetic / personal tone</span>
+              </div>
+            </div>
+            <div class="work-meta">
+              <span class="pill">生活感</span>
+              <span class="pill">內容企劃</span>
+              <span class="pill">個人風格</span>
+            </div>
+            <div class="work-body">
+              <h3>生活興趣主題內容企劃</h3>
+              <p>把烘焙、料理與閱讀等生活元素轉成網站敘事的一部分，讓頁面不只像履歷，也保有個人辨識度。</p>
+              <a class="work-link" href="#interests">查看風格來源 →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="snapshot">
+      <div class="container snapshot-grid">
+        <div class="snapshot-wrap glass">
+          <div class="section-kicker">Snapshot</div>
+          <h2 style="margin-top:8px;font-family:'Noto Serif TC',serif;">這個版本已經具備可以直接交作業與直接上線的完成度。</h2>
+          <p>目前網站已經完成基本資料整合、個人定位、作品區塊、聯絡方式、手機導覽、IG 互動與本人照片展示，已經不只是草稿，而是可以真正拿來展示的成品。</p>
+
+          <div class="checklist">
+            <div class="check"><div class="check-mark">✓</div><div><strong>可直接交作業</strong><br><span class="muted">內容完整、結構清楚、可截圖與可分享。</span></div></div>
+            <div class="check"><div class="check-mark">✓</div><div><strong>可直接部署</strong><br><span class="muted">單頁靜態網站，GitHub Pages / Vercel 都能使用。</span></div></div>
+            <div class="check"><div class="check-mark">✓</div><div><strong>可繼續擴充</strong><br><span class="muted">後續只要補作品截圖、Email 或更多成果即可延伸。</span></div></div>
+          </div>
+        </div>
+
+        <aside class="quote-card glass">
+          <div>
+            <div class="section-kicker">Personal note</div>
+            <p class="quote">我希望別人看到這個網站時，不只是知道我是誰，也能感覺到我正在慢慢把自己的風格建立起來。</p>
+            <p class="quote-sub">這份網站保留了學生感、真實感與日常感，也比單純把資料貼上網頁更完整。</p>
+          </div>
+          <div class="hero-chips" style="margin-top:20px">
+            <span class="chip">真實照片</span>
+            <span class="chip">作品區塊</span>
+            <span class="chip">IG 互動</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Contact</div>
+          <h2>如果想更認識我，可以先從 Instagram 開始。</h2>
+          <p>目前這個網站的主要聯絡入口是 Instagram，也保留 QR 與複製帳號的方式，讓不同裝置都比較好使用。</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-main glass">
+            <div class="section-kicker">Primary contact</div>
+            <h3 style="margin-top:8px;font-size:1.4rem;">@zihan_1123_</h3>
+            <p style="margin-top:10px;color:var(--muted)">日常、生活片段與個人風格，會先在這裡慢慢累積。若要快速找到我，這裡是最直接的入口。</p>
+
+            <div class="contact-actions">
+              <a class="button" href="https://www.instagram.com/zihan_1123_/" target="_blank" rel="noopener noreferrer" onclick="openInstagram(event, 'https://www.instagram.com/zihan_1123_/')">前往 Instagram</a>
+              <button class="copy-button" type="button" onclick="copyIG()">複製 IG 帳號</button>
+            </div>
+
+            <div class="contact-list">
+              <div class="contact-item">
+                <div class="icon-badge">IG</div>
+                <div>
+                  <strong>Instagram</strong>
+                  <span><a href="https://www.instagram.com/zihan_1123_/" target="_blank" rel="noopener noreferrer" onclick="openInstagram(event, 'https://www.instagram.com/zihan_1123_/')">@zihan_1123_</a></span>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="icon-badge">系</div>
+                <div>
+                  <strong>學習背景</strong>
+                  <span>資訊管理系／大一</span>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="icon-badge">站</div>
+                <div>
+                  <strong>網站定位</strong>
+                  <span>個人品牌、學習歷程與一頁式展示網站</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="contact-side glass">
+            <div class="section-kicker">Quick access</div>
+            <h3 style="margin-top:8px;font-size:1.2rem;">掃描 QR Code</h3>
+            <p style="margin-top:10px;color:var(--muted)">適合手機展示、課堂截圖或實際分享時快速開啟。</p>
+            <div class="qr-card" style="margin-top:18px">
+              <img src="ig-qr.png" alt="Instagram QR Code" />
+            </div>
+            <div class="photo-credit">若按鈕在部分 App 內建瀏覽器中不穩，仍可透過 QR 或複製帳號進入。</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-shell glass">
+        <div>
+          <strong>蘇子涵｜Zihan Su</strong>
+          <p>資訊管理系大一學生的一頁式個人網站。這一版已整合本人照片、作品區、IG 聯絡方式與手機導覽。</p>
+        </div>
+        <a class="mini-button" href="#top">回到最上方</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="dock" aria-label="手機底部導覽">
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#process">Process</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">已複製 IG 帳號：zihan_1123_</div>
+
+  <script>
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const topTarget = document.querySelector('#top');
+    const navLinks = [...document.querySelectorAll('.nav a, .dock a')];
+    const progress = document.querySelector('.progress');
+    const toast = document.getElementById('toast');
+
+    function setActiveLink() {
+      const offset = window.scrollY + 140;
+      let currentId = '';
+      for (const section of sections) {
+        if (offset >= section.offsetTop) currentId = section.id;
+      }
+      navLinks.forEach(link => {
+        const match = link.getAttribute('href') === `#${currentId}`;
+        link.classList.toggle('active', match);
+      });
+    }
+
+    function setProgress() {
+      const scrollTop = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? (scrollTop / max) * 100 : 0;
+      document.documentElement.style.setProperty('--progress', ratio + '%');
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function openInstagram(event, url) {
+      if (event) event.preventDefault();
+      const opened = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!opened) window.location.href = url;
+    }
+
+    async function copyIG() {
+      const text = 'zihan_1123_';
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('已複製 IG 帳號：' + text);
+      } catch (err) {
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        input.remove();
+        showToast('已複製 IG 帳號：' + text);
+      }
+    }
+
+    setActiveLink();
+    setProgress();
+    window.addEventListener('scroll', () => {
+      setActiveLink();
+      setProgress();
+    }, { passive: true });
+
+    window.openInstagram = openInstagram;
+    window.copyIG = copyIG;
+  </script>
+</body>
+</html>

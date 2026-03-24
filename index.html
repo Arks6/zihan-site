@@ -154,12 +154,21 @@
       content:""; position:absolute; inset:16px 16px auto auto; width:150px; height:150px; border-radius:50%;
       background:radial-gradient(circle, rgba(125,139,121,.22), transparent 66%); pointer-events:none
     }
-    .photo-frame{
-      position:relative; border-radius:26px; overflow:hidden; aspect-ratio:4 / 5;
-      border:1px solid rgba(98,80,64,.10);
-      background:linear-gradient(180deg, rgba(184,142,105,.12), rgba(125,139,121,.14))
-    }
-    .photo-frame img{width:100%; height:100%; object-fit:cover; object-position:center 18%}
+    ..photo-frame{
+  position:relative;
+  border-radius:26px;
+  overflow:hidden;
+  aspect-ratio:1186 / 1382; /* 接近原圖比例 */
+  border:1px solid rgba(98,80,64,.10);
+  background:linear-gradient(180deg, rgba(184,142,105,.12), rgba(125,139,121,.14));
+}
+
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top; /* 比 center 18% 更自然 */
+}
     .photo-panel{
       position:absolute; inset:auto 16px 16px 16px; padding:18px;
       border-radius:20px; background:linear-gradient(180deg, rgba(47,41,37,0.08), rgba(47,41,37,.78));
